@@ -1,0 +1,89 @@
+.\" @(#)what.1 1.18 93/09/15 SMI; from UCB 4.2
+.TH what 1 "7 Sep 1998"
+.SH NAME
+what \- extract SCCS version information from a file
+.SH SYNOPSIS
+.B what
+[
+.B \-s
+]
+[
+.B \-n 
+x ]
+.I filename .\|.\|.
+.IX  "what command"  ""  "\fLwhat\fP \(em extract SCCS version information from a file"
+.IX "SCCS" "extract SCCS version information from a file" "" "extract SCCS version information from a file \(em \fLwhat\fP"
+.IX "files" "extract SCCS version information from a file" "" "extract SCCS version information from a file \(em \fLwhat\fP"
+.SH DESCRIPTION
+.B what
+searches each
+.IR filename
+for occurrences of the pattern
+.B @(#)
+that the
+.SM SCCS
+.BR get
+command (see
+.BR sccs-get (1))
+substitutes for the
+.B %\&Z%
+ID keyword, and
+prints what follows up to a
+\f3"\fP,
+.BR > ,
+.SM NEWLINE\s0,
+.BR \e ,
+or
+null
+character.
+.SH OPTIONS
+.TP
+.B \-s
+Stop after the first occurrence of the pattern.
+.TP
+.B \-n x
+Stop after the first x occurences of the pattern
+.SH EXAMPLES
+.LP
+For example, if a C program in file
+.B program.c
+contains
+.LP
+.RS
+.ft 4
+char sccsid[\|] = "\|@(#)identification information\|";
+.ft 1
+.RE
+.LP
+and
+.B program.c
+is compiled to yield
+.B program.o
+and
+.BR a.out ,
+the command:
+.LP
+.RS
+.ft 4
+example% what program.c program.o a.out
+.ft 1
+.RE
+.LP
+produces:
+.RS
+.TP
+.BR program.c :
+identification information
+.TP
+.BR program.o :
+identification information
+.TP
+.BR a.out :
+identification information
+.RE
+.SH BUGS
+.LP
+There is a remote possibility that a spurious occurrence of the
+.RB ` @(#) '
+pattern could be found by
+.BR what .

@@ -1,0 +1,18 @@
+this is an old DOS version of `what' which i then ported to Linux because
+i could not find a version available for it.  it looks for the special
+character sequence @(#) (or an alternate string specified by -p) and
+gives you the text associated with it.  this is handy for acquiring
+information in binaries provided by the programmer.  there is a modified
+man page which comes from an old unix version of what.  it's somewhat
+old, for up to date usage try `what --help'.  the binary is a static
+i386-linux-elf, what is known to compile and work on axp-linux also.
+
+to compile, just use `make', you may want to include some CFLAGS, for
+example:
+
+% make CC=gcc CFLAGS='-O3 -m486'
+
+then to install make yourself root with `su' and type `make install'.
+
+i am not actively developing this any more, but if you have improvements
+which are worth including i might just make a new version.
